@@ -12,7 +12,7 @@ package onlinewordsearcher.be;
 public class Movie
 {
 
-    private int id;
+    private final int id;
     private String title;
 
     public Movie(int id, String title)

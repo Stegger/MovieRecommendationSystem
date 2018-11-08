@@ -12,8 +12,8 @@ package onlinewordsearcher.be;
 public class Rating
 {
 
-    private Movie movie;
-    private User user;
+    private final Movie movie;
+    private final User user;
     private int rating;
 
     public Rating(Movie movie, User user, int rating)
