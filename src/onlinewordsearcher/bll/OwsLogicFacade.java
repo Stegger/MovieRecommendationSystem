@@ -5,11 +5,18 @@
  */
 package onlinewordsearcher.bll;
 
+import java.util.List;
+import onlinewordsearcher.be.Movie;
+import onlinewordsearcher.be.User;
+
 /**
  *
  * @author pgn
  */
 public interface OwsLogicFacade
 {
+    
+    public List<Movie> getRecommendations(User user);
+    
     
 }
