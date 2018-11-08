@@ -15,15 +15,35 @@ import onlinewordsearcher.be.User;
  */
 public class MovieDAO
 {
-    
-    private List<User> getUsers(Movie movie)
+
+    private Movie createMovie(int releaseYear, String title)
     {
+        //TODO
         return null;
     }
- 
+
+    private void deleteMovie(Movie movie)
+    {
+        //TODO Delete movie
+    }
+
+    private void updateMovie(Movie movie)
+    {
+        //TODO Update movies
+    }
+
+    private List<Movie> getAllMovies()
+    {
+        //TODO Get all movies
+        return null;
+    }
+
     private List<Movie> getRatedMovies(User user)
     {
+        //TODO Get all movies
         return null;
     }
+
+    
     
 }
