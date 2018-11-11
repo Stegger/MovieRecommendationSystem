@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movierecsys.gui.controller.MovieRecController">
+   <top>
+      <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Movie Recommendation System" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Book Antiqua Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+   <center>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtMovieSearcjh" promptText="search movies" />
+            <ListView fx:id="lstMovies" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
