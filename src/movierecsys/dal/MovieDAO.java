@@ -21,6 +21,8 @@ import movierecsys.be.Movie;
 public class MovieDAO
 {
 
+    private static final String MOVIE_SOURCE = "data/movie_titles.txt";
+    
     /**
      * Gets a list of all movies in the persistence storage.
      *
@@ -29,8 +31,7 @@ public class MovieDAO
     public List<Movie> getAllMovies() throws FileNotFoundException, IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        String source = "data/movie_titles.txt";
-        File file = new File(source);
+        File file = new File(MOVIE_SOURCE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file)))
         {
