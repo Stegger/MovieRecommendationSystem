@@ -22,11 +22,12 @@ public class MovieDAO
 {
 
     private static final String MOVIE_SOURCE = "data/movie_titles.txt";
-    
+
     /**
      * Gets a list of all movies in the persistence storage.
      *
      * @return List of movies.
+     * @throws java.io.FileNotFoundException
      */
     public List<Movie> getAllMovies() throws FileNotFoundException, IOException
     {
@@ -44,7 +45,8 @@ public class MovieDAO
                     allMovies.add(mov);
                 } catch (Exception ex)
                 {
-                    //Do nothing
+                    //Do nothing we simply do not accept malformed lines of data.
+                    //In a perfect world you should at least log the incident.
                 }
             }
         }
