@@ -5,6 +5,12 @@
  */
 package movierecsys.dal;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import movierecsys.be.Movie;
 
@@ -20,10 +26,47 @@ public class MovieDAO
      *
      * @return List of movies.
      */
-    private List<Movie> getAllMovies()
+    public List<Movie> getAllMovies() throws FileNotFoundException, IOException
     {
-        //TODO Get all movies
-        return null;
+        List<Movie> allMovies = new ArrayList<>();
+        String source = "data/movie_titles.txt";
+        File file = new File(source);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
+        {
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                try
+                {
+                    Movie mov = stringArrayToMovie(line);
+                    allMovies.add(mov);
+                } catch (Exception ex)
+                {
+                    //Do nothing
+                }
+            }
+        }
+        return allMovies;
+    }
+
+    /**
+     * Reads a movie from a , s
+     *
+     * @param t
+     * @return
+     * @throws NumberFormatException
+     */
+    private Movie stringArrayToMovie(String t)
+    {
+        String[] arrMovie = t.split(",");
+
+        int id = Integer.parseInt(arrMovie[0]);
+        int year = Integer.parseInt(arrMovie[1]);
+        String title = arrMovie[2];
+
+        Movie mov = new Movie(id, year, title);
+        return mov;
     }
 
     /**

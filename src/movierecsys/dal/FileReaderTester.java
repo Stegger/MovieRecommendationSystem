@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Stream;
+import movierecsys.be.Movie;
 
 /**
  *
@@ -26,12 +27,24 @@ public class FileReaderTester
 
     /**
      * Example method. This is the code I used to create the users.txt files.
+     *
      * @param args
-     * @throws IOException 
+     * @throws IOException
      */
     public static void main(String[] args) throws IOException
     {
-        File ratings = new File("data/ratings.txt");   
+        MovieDAO movieDao = new MovieDAO();
+        List<Movie> allMovs = movieDao.getAllMovies();
+        for (Movie allMov : allMovs)
+        {
+            System.out.println(allMov.getTitle());
+        }
+        System.out.println("Movie count: " + allMovs.size());
+    }
+
+    private static void createUserFile() throws IOException
+    {
+        File ratings = new File("data/ratings.txt");
         Set<Integer> uniqueIds = new HashSet<>();
         Stream<String> lines = Files.lines(ratings.toPath());
         lines.forEach((String t) ->
@@ -41,7 +54,7 @@ public class FileReaderTester
             uniqueIds.add(id);
         });
         TreeSet<Integer> sorted = new TreeSet<>(uniqueIds);
-        
+
         File users = new File("data/users.txt");
         try (BufferedWriter bw = Files.newBufferedWriter(users.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE))
         {
