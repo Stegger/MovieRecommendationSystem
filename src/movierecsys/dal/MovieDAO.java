@@ -12,14 +12,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import movierecsys.be.Movie;
 
 /**
- *
  * @author pgn
  */
-public class MovieDAO
-{
+public class MovieDAO {
 
     private static final String MOVIE_SOURCE = "data/movie_titles.txt";
 
@@ -29,22 +28,17 @@ public class MovieDAO
      * @return List of movies.
      * @throws java.io.FileNotFoundException
      */
-    public List<Movie> getAllMovies() throws FileNotFoundException, IOException
-    {
+    public List<Movie> getAllMovies() throws FileNotFoundException, IOException {
         List<Movie> allMovies = new ArrayList<>();
         File file = new File(MOVIE_SOURCE);
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
-        {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
-            while ((line = reader.readLine()) != null)
-            {
-                try
-                {
+            while ((line = reader.readLine()) != null) {
+                try {
                     Movie mov = stringArrayToMovie(line);
                     allMovies.add(mov);
-                } catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     //Do nothing we simply do not accept malformed lines of data.
                     //In a perfect world you should at least log the incident.
                 }
@@ -60,14 +54,17 @@ public class MovieDAO
      * @return
      * @throws NumberFormatException
      */
-    private Movie stringArrayToMovie(String t)
-    {
+    private Movie stringArrayToMovie(String t) {
         String[] arrMovie = t.split(",");
 
         int id = Integer.parseInt(arrMovie[0]);
         int year = Integer.parseInt(arrMovie[1]);
         String title = arrMovie[2];
-
+        if (arrMovie.length > 3) {
+            for (int i = 3; i < arrMovie.length; i++) {
+                title += "," + arrMovie[i];
+            }
+        }
         Movie mov = new Movie(id, year, title);
         return mov;
     }
@@ -76,12 +73,11 @@ public class MovieDAO
      * Creates a movie in the persistence storage.
      *
      * @param releaseYear The release year of the movie
-     * @param title The title of the movie
+     * @param title       The title of the movie
      * @return The object representation of the movie added to the persistence
      * storage.
      */
-    private Movie createMovie(int releaseYear, String title)
-    {
+    private Movie createMovie(int releaseYear, String title) {
         //TODO Create movie.
         return null;
     }
@@ -91,8 +87,7 @@ public class MovieDAO
      *
      * @param movie The movie to delete.
      */
-    private void deleteMovie(Movie movie)
-    {
+    private void deleteMovie(Movie movie) {
         //TODO Delete movie
     }
 
@@ -102,8 +97,7 @@ public class MovieDAO
      *
      * @param movie The updated movie.
      */
-    private void updateMovie(Movie movie)
-    {
+    private void updateMovie(Movie movie) {
         //TODO Update movies
     }
 
@@ -113,8 +107,7 @@ public class MovieDAO
      * @param id ID of the movie.
      * @return A Movie object.
      */
-    private Movie getMovie(int id)
-    {
+    private Movie getMovie(int id) {
         //TODO Get one Movie
         return null;
     }
